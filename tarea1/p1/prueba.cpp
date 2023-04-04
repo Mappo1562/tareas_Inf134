@@ -37,8 +37,13 @@ void leer(){
         for (int j=0;j<R;j++){
             cout<<a[j];
         }
-        
+
         file.read((char*)&b, sizeof(int));
+        cout<<" el primer numero es: "<<b;
+        file.read((char*)&b, sizeof(int));
+        file.read((char*)&b, sizeof(int));
+        file.read((char*)&b, sizeof(int));
+
         cout<<"\n";
     }
     file.close();
