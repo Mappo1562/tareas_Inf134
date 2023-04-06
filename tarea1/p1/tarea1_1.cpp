@@ -11,6 +11,7 @@ int const SERV_ONCE = 2;
 int const SERV_CENA = 3;
 
 int const R = 11;
+int tamanio;
 
 struct SaldoColaborador {
 char rut [11];
@@ -22,7 +23,7 @@ int saldo_cena ;
 
 
 
-bool es_colaborador(char*rut){
+bool es_colaborador(char*rut){                              //busca en el archivo si el propietario del rut es o no colaborador
     int n;
     bool flag=0;
     ifstream file;
@@ -47,11 +48,43 @@ bool es_colaborador(char*rut){
 
 
 
-bool puedeConsumir(char* rut, int servicio, string consumos_dia){
+string identificar_servicio(int servicionumerico){
+    string servicio;
+    if (servicionumerico==SERV_DESAYUNO){
+        servicio="DESAYUNO";
+    }
+    else if (servicionumerico==SERV_ALMUERZO){
+        servicio="ALMUERZO";
+    }
+    else if (servicionumerico==SERV_ONCE){
+        servicio="ONCE";
+    }
+    else if (servicionumerico==SERV_CENA){
+        servicio="CENA";
+    }
+    return servicio;
+}
+
+
+
+
+bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
+
+
     if (es_colaborador(rut))
         cout<<"es colaborador\n";
-    else 
+    else {
         cout<<"no es colaborador\n";
+        return 0;
+    }
+
+
+    cout<<"el cliente quiere: "<<identificar_servicio(servicionumerico)<<"\n";
+    char a[9]="ALMUERZO";
+    if(identificar_servicio(servicionumerico)==a) 
+        cout<<"los veo como iguales"<<"\n";
+
+
     return false;
 }
 
