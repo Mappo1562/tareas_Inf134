@@ -165,7 +165,7 @@ int main(){
     int servicio;
     string nombre;
     cout<<"Zona de pruebas \n";
-    cout<<"ingrese el nombre del archivo del dia: ";cin>>nombre;
+    cout<<"ingrese el nombre del archivo del dia: (con formato x.txt donde x es un string random)";cin>>nombre;
     do{
         cout<<"rut: ";cin>>rut;
         cout<<"numero servicio: ";cin>>servicio;
