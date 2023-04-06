@@ -23,7 +23,7 @@ int saldo_cena ;
 
 
 
-bool es_colaborador(char*rut){                              //busca en el archivo si el propietario del rut es o no colaborador
+bool es_colaborador(char*rut){//                            busca en el archivo binario si el propietario del rut es o no colaborador
     int n;
     bool flag=0;
     ifstream file;
@@ -45,10 +45,10 @@ bool es_colaborador(char*rut){                              //busca en el archiv
     return true;
     return false;
 }
+                              
 
 
-
-string identificar_servicio(int servicionumerico){
+string identificar_servicio(int servicionumerico){//        entrega un string en mayusculas listo para ser comparado con el archivo txt
     string servicio;
     if (servicionumerico==SERV_DESAYUNO){
         servicio="DESAYUNO";
