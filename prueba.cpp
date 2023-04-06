@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
-int const R = 11;
+
 
 
 

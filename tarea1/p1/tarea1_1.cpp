@@ -11,7 +11,7 @@ int const SERV_ONCE = 2;
 int const SERV_CENA = 3;
 
 int const R = 11;
-int NUMERO_CONSUMOS_DIARIOS=6;
+int NUMERO_CONSUMOS_DIARIOS=0;
 
 
 struct SaldoColaborador {
@@ -29,7 +29,7 @@ struct consumos{
 };
 
 
-int conseguir_saldo(char*rut,int servicio_numerico){//                            la idea es que retorne la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
+int conseguir_saldo(char*rut,int servicio_numerico){//                              la idea es que retorne la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
     int n,saldo=0;
     ifstream file;
     SaldoColaborador cliente;
@@ -39,10 +39,9 @@ int conseguir_saldo(char*rut,int servicio_numerico){//                          
         exit(1);
     }
     file.read((char*)&n, sizeof(int));
-    cout<<"n = "<<n<<" \n";
     for(int i=0 ; i<n ; i++){
         file.read((char*)&cliente, sizeof(SaldoColaborador));
-        if (!strcmp(cliente.rut,rut))
+        if (!strcmp(cliente.rut,rut)){
             if (0==servicio_numerico)
                 saldo=cliente.saldo_desayuno;
             else if (1==servicio_numerico)
@@ -51,6 +50,7 @@ int conseguir_saldo(char*rut,int servicio_numerico){//                          
                 saldo=cliente.saldo_once;
             else if (3==servicio_numerico)
                 saldo=cliente.saldo_cena;
+        }
     }
     file.close();
     return saldo;
@@ -58,7 +58,7 @@ int conseguir_saldo(char*rut,int servicio_numerico){//                          
                               
 
 
-string identificar_servicio(int servicionumerico){//        entrega un string en mayusculas listo para ser comparado con el archivo txt
+string identificar_servicio(int servicionumerico){//                                entrega un string en mayusculas listo para ser comparado con el archivo txt
     string servicio;
     if (servicionumerico==SERV_DESAYUNO){
         servicio="DESAYUNO";
@@ -91,8 +91,10 @@ int gastos(string servicio,string consumos_dia,char* rut,int saldo){//          
         file >>tipo;
         flag=1;
         for (int j=0;j<R;j++){
-            if (rut[j]!=run[j])
+            if (rut[j]!=run[j]){
                 flag=0;
+                break;
+            }
         }
         if (flag){
             if (tipo==servicio)
@@ -105,33 +107,73 @@ int gastos(string servicio,string consumos_dia,char* rut,int saldo){//          
 
 
 
+void actualizartxt(char* rut, string servicio, string consumos_dia){//              como el nombre lo dice actualiza el archivo .txt con el nuevo consumo
+    fstream file;
+    file.open(consumos_dia, ios::app);
+    if(!file.is_open()){
+        cout << "Error al abrir el archivo actualizar" << endl;
+        exit(1);
+    }
+    file<<rut<<" "<<servicio<<"\n";
+    NUMERO_CONSUMOS_DIARIOS++;
+    file.close();
+}
+
+
+
+void creartxt(string consumos_dia){
+    ofstream file;
+    file.open(consumos_dia, ios::out);
+    if(!file.is_open()){
+        cout << "Error al abrir el archivo crear" << endl;
+        exit(1);
+    }
+    file.close();
+}
+
+
+
 bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
-    int saldo;
+    int saldo,gasto;
     string servicio;
+
+    if (NUMERO_CONSUMOS_DIARIOS==0)
+        creartxt(consumos_dia);
 
     saldo=conseguir_saldo(rut,servicionumerico);
 
-    if (!saldo)//   retorna falso para todos los que no son colaboradores o a los que no tienen saldo
+    if (!saldo)//                                               retorna falso para todos los que no son colaboradores o a los que no tienen saldo
         return 0;
-
 
     servicio=identificar_servicio(servicionumerico);
 
-    int n=gastos(servicio , consumos_dia , rut , saldo);
-
-    cout<<"el cliente ha utilizado "<<n<<" "<<servicio<<"\n";
+    gasto=gastos(servicio , consumos_dia , rut , saldo);
 
 
+    if (saldo-gasto<=0)//                                       retorna falso si ya utilizo todo su saldo
+        return 0;
+    
+    actualizartxt(rut , servicio, consumos_dia);
 
-
-    return false;
+    return 1;
 }
 
 
 
 int main(){
-    char r[R]="33333333-3";
-    puedeConsumir(r,1,"consumosdia.txt");
+    char rut[R];
+    int servicio;
+    string nombre;
+    cout<<"Zona de pruebas \n";
+    cout<<"ingrese el nombre del archivo del dia: ";cin>>nombre;
+    do{
+        cout<<"rut: ";cin>>rut;
+        cout<<"numero servicio: ";cin>>servicio;
+        if (puedeConsumir(rut,servicio,nombre))
+            cout<<"puede consumir\n";
+        else
+            cout<<"no puede consumir\n";
+    }while(servicio!=4);
     return 0;
 }
 
