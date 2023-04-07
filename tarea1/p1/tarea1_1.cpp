@@ -10,6 +10,7 @@ int const SERV_ALMUERZO = 1;
 int const SERV_ONCE = 2;
 int const SERV_CENA = 3;
 
+
 int const R = 11;
 int NUMERO_CONSUMOS_DIARIOS=0;
 
@@ -22,11 +23,6 @@ int saldo_once ;
 int saldo_cena ;
 };
 
-
-struct consumos{
-    char rut[R];
-    string tipo;
-};
 
 
 int conseguir_saldo(char*rut,int servicio_numerico){//                              la idea es que retorne la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
@@ -111,7 +107,7 @@ void actualizartxt(char* rut, string servicio, string consumos_dia){//          
     fstream file;
     file.open(consumos_dia, ios::app);
     if(!file.is_open()){
-        cout << "Error al abrir el archivo actualizar" << endl;
+        cout << "Error al abrir el archivo" << endl;
         exit(1);
     }
     file<<rut<<" "<<servicio<<"\n";
@@ -125,7 +121,7 @@ void creartxt(string consumos_dia){
     ofstream file;
     file.open(consumos_dia, ios::out);
     if(!file.is_open()){
-        cout << "Error al abrir el archivo crear" << endl;
+        cout << "Error al abrir el archivo" << endl;
         exit(1);
     }
     file.close();
@@ -177,10 +173,3 @@ int main(){
     return 0;
 }
 
-
-
-
-
-/*
-http://jbgarcia.webs.uvigo.es/asignaturas/TO/cursilloCpp/14_archivos.html
-*/
