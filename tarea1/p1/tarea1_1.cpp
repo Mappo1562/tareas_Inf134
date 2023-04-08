@@ -86,7 +86,7 @@ int gastos(string servicio,string consumos_dia,char* rut,int saldo){//          
         file >> run;
         file >>tipo;
         flag=1;
-        for (int j=0;j<R;j++){
+        for (int j=0;j<R;j++){//                                                    comparamos el string run con el arreglo de caracteres rut
             if (rut[j]!=run[j]){
                 flag=0;
                 break;
