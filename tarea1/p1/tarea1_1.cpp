@@ -30,20 +30,26 @@ int conseguir_saldo(char*rut,int servicio_numerico){//                          
     ifstream file;
     SaldoColaborador cliente;
     file.open("saldos.bin",ios::binary);
+
     if(!file.is_open()){
         cout << "Error al abrir el archivo" << endl;
         exit(1);
     }
     file.read((char*)&n, sizeof(int));
+
     for(int i=0 ; i<n ; i++){
         file.read((char*)&cliente, sizeof(SaldoColaborador));
         if (!strcmp(cliente.rut,rut)){
+
             if (0==servicio_numerico)
                 saldo=cliente.saldo_desayuno;
+
             else if (1==servicio_numerico)
                 saldo=cliente.saldo_almuerzo;
+
             else if (2==servicio_numerico)
                 saldo=cliente.saldo_once;
+
             else if (3==servicio_numerico)
                 saldo=cliente.saldo_cena;
         }
@@ -68,12 +74,13 @@ string identificar_servicio(int servicionumerico){//                            
     else if (servicionumerico==SERV_CENA){
         servicio="CENA";
     }
+    else servicio="NO EXISTE";
     return servicio;
 }
 
 
 
-int gastos(string servicio,string consumos_dia,char* rut,int saldo){//              calcula cuantos servicios del mismo tipo ha usado en el dia
+int gastos(string servicio,string consumos_dia,char* rut){//              calcula cuantos servicios del mismo tipo ha usado en el dia
     ifstream file;
     string tipo,run;
     int contador=0,flag;
@@ -143,7 +150,10 @@ bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
 
     servicio=identificar_servicio(servicionumerico);
 
-    gasto=gastos(servicio , consumos_dia , rut , saldo);
+    if (servicio=="NO EXISTE")//                                retorna 0 si el servicio pedido no existe
+        return 0;
+
+    gasto=gastos(servicio , consumos_dia , rut );
 
 
     if (saldo-gasto<=0)//                                       retorna falso si ya utilizo todo su saldo
