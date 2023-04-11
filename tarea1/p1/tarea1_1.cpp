@@ -12,7 +12,6 @@ int const SERV_CENA = 3;
 
 
 int const R = 11;
-int NUMERO_CONSUMOS_DIARIOS=0;
 
 
 struct SaldoColaborador {
@@ -89,8 +88,7 @@ int gastos(string servicio,string consumos_dia,char* rut){//              calcul
         cout << "Error al abrir el archivo" << endl;
         exit(1);
     }
-    for (int i=0;i<NUMERO_CONSUMOS_DIARIOS;i++){
-        file >> run;
+    while (file >> run){
         file >>tipo;
         flag=1;
         for (int j=0;j<R;j++){//                                                    comparamos el string run con el arreglo de caracteres rut
@@ -118,31 +116,30 @@ void actualizartxt(char* rut, string servicio, string consumos_dia){//          
         exit(1);
     }
     file<<rut<<" "<<servicio<<"\n";
-    NUMERO_CONSUMOS_DIARIOS++;
     file.close();
 }
 
 
 
-void creartxt(string consumos_dia){
-    ofstream file;
-    file.open(consumos_dia, ios::out);
+void creartxt(string consumos_dia){//                                               si el archivo no existe lo crea
+    fstream file;
+    file.open(consumos_dia, ios::app);
     if(!file.is_open()){
-        cout << "Error al abrir el archivo" << endl;
-        exit(1);
+        fstream crear;
+        crear.open(consumos_dia, ios::out);
+        crear.close();
+        return;
     }
     file.close();
 }
 
 
 
+
 bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
     int saldo,gasto;
     string servicio;
-
-    if (NUMERO_CONSUMOS_DIARIOS==0)
-        creartxt(consumos_dia);
-
+    
     saldo=conseguir_saldo(rut,servicionumerico);
 
     if (!saldo)//                                               retorna falso para todos los que no son colaboradores o a los que no tienen saldo
@@ -150,9 +147,11 @@ bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
 
     servicio=identificar_servicio(servicionumerico);
 
-    if (servicio=="NO EXISTE")//                                retorna 0 si el servicio pedido no existe
+    if (servicio=="NO EXISTE")//                                retorna falso si el servicio pedido no existe
         return 0;
 
+
+    creartxt(consumos_dia);
     gasto=gastos(servicio , consumos_dia , rut );
 
 
@@ -171,8 +170,9 @@ int main(){
     int servicio;
     string nombre;
     cout<<"Zona de pruebas \n";
-    cout<<"ingrese el nombre del archivo del dia: (con formato x.txt donde x es un string random)";cin>>nombre;
+    cout<<"el nombre del archivo del dia usa formato x.txt donde x es un string random";
     do{
+        cout<<"ingrese el nombre del archivo del dia:";cin>>nombre;
         cout<<"rut: ";cin>>rut;
         cout<<"numero servicio: ";cin>>servicio;
         if (puedeConsumir(rut,servicio,nombre))
