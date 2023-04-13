@@ -12,7 +12,8 @@ struct Persona {
 };
 
 int* comprarTarjeta(string nombre, int dia, int &m){        //  creo que esta mal
-    int* tarjeta=new int[nombre.size()];
+    int* tarjeta;
+    tarjeta=new int[nombre.size()];
     for (unsigned int i=0 ; i<nombre.size() ; i++){
         tarjeta[i] = nombre[i]%dia;
     }
@@ -28,7 +29,10 @@ void intercambiarTarjeta(Persona* p1, Persona* p2){         // tambien creo q es
 }
 
 int puntaje(Persona* p1){
-
+    int sum=0;
+    for (int i=0; i<p1->tamanio_tarjeta-1 ;i++)
+        sum+= p1->tarjeta[i] * p1->fecha[i%10];
+    return sum;
 }
 
 Persona* unDia(Persona* personas, int dia){
