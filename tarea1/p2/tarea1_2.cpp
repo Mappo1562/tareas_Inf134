@@ -4,6 +4,7 @@
 using namespace std;
 
 int p;
+int puntajemax;
 
 struct Persona {
     string nombre ;
@@ -13,17 +14,27 @@ struct Persona {
     bool quiere_intercambiar ;
 };
 
-int* comprarTarjeta(string nombre, int dia, int &m){ 
-    int* tarjeta;
-    tarjeta=new int[nombre.size()];
-    for (unsigned int i=0 ; i<nombre.size() ; i++){
-        tarjeta[i] = nombre[i]%dia;
+void print(Persona* personas){
+    for (int i=0 ; i<p ; i++){
+        cout<<personas[i].nombre<<" ";
+        for (int j=0 ; j<personas[i].tamanio_tarjeta ; j++)
+            cout<<personas[i].tarjeta[j];
+        cout<<"\n";
     }
-    m=nombre.size();
-    return tarjeta;
 }
 
-void intercambiarTarjeta(Persona* p1, Persona* p2){
+
+
+int* comprarTarjeta(string nombre, int dia, int &m){
+    int* ret=new int[nombre.size()];
+    for (unsigned int i=0 ; i<nombre.size() ; i++){
+        ret[i] = nombre[i]%dia;
+    }
+    m=nombre.size();
+    return ret;
+}
+
+void intercambiarTarjeta(Persona* p1, Persona* p2){//                   se necesita trabajar esta funcion ya que el dia 1 no da lo mismo del ejemplo
     int* copia = (*p1).tarjeta ;
     (*p1).tarjeta=(*p2).tarjeta;
     (*p2).tarjeta=copia;
@@ -32,7 +43,7 @@ void intercambiarTarjeta(Persona* p1, Persona* p2){
 
 int puntaje(Persona* p1){
     int sum=0;
-    for (int i=0; i<p1->tamanio_tarjeta-1 ;i++)
+    for (int i=0; i<p1->tamanio_tarjeta ;i++)
         sum+= p1->tarjeta[i] * p1->fecha[i%10];
     return sum;
 }
@@ -52,6 +63,10 @@ Persona* unDia(Persona* personas, int dia){
         personas[i].tamanio_tarjeta=m;
     }
 
+    cout<<"dia = "<<dia<<"\n";
+    print(personas);
+    cout<<"\n";
+
     bool sigo=1;
     while(sigo){//                                                              ciclos para cambios de tarjetas
         sigo=0;
@@ -66,39 +81,58 @@ Persona* unDia(Persona* personas, int dia){
                             tamanio=personas[j].tamanio_tarjeta;
                         if(numero_comun(personas[i],personas[j],tamanio)){
                             intercambiarTarjeta(&personas[i],&personas[j]);
-                            sigo=1;//                                           la flag seguira si por lo menos una persona cambio
+                            sigo=1;//                                           la flag seguira siendo 1 si por lo menos una persona cambio
                         }
                     }
                 }
             }
         }
     }
+
+    cout<<"despues del intercambio:\n";
+    print(personas);
+    cout<<"\n";
+
     Persona* ganador=&personas[0];
-    int puntajemax=puntaje(ganador);
-    for(int i=1 ; 1<p ; i++){
+    puntajemax=puntaje(ganador);
+    for(int i=0 ; i<p ; i++){
         int puntos=puntaje(&personas[i]);
         if (puntos>puntajemax){
             ganador=&personas[i];
             puntajemax=puntos;
         }
     }
+
     return ganador;
 }
 
 void variosDias(Persona* personas, int cant_dias){
-
+    Persona* ganador;
+    for(int i=1;i<=cant_dias;i++){
+        ganador=unDia(personas,i);
+        cout<<ganador->nombre<<"    "<<ganador->fecha<<"    "<<puntajemax<<"\n\n";
+    }
 }
 
 int main(){
-    int dia,m,*var;
-    string nombre;
-    cin>>nombre;
-    cin>>dia;
-    m=nombre.length();
-    var=comprarTarjeta(nombre,dia,m);
-    for(int i=0;i<m;i++){
-        cout<<var[i];
+/*
+    cin>>p;
+    Persona personas[p];
+    for(int i=0;i<p;i++){
+        cin>>personas[i].nombre;
+        cin>>personas[i].fecha;
+        cin>>personas[i].quiere_intercambiar;
     }
-    cout<<"\n";
+*/
+    ifstream file;
+    file.open("arch.txt");
+    file>>p;
+    Persona personas[p];
+    for(int i=0;i<p;i++){
+        file>>personas[i].nombre;
+        file>>personas[i].fecha;
+        file>>personas[i].quiere_intercambiar;
+    }
+    variosDias(personas,2);
     return 0;
 }
