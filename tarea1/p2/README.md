@@ -2,7 +2,7 @@
 
 para compilar el programa se utilizo    g++ tarea1_2.cpp -o out -Wall
 
-el programa cuenta con las funciones pedidas y 1 extra creada para facilitar un poco las cosas
+el programa cuenta con las funciones pedidas y 1 extra creada para facilitar un poco las cosas, dejamos un archivo txt que utilizamos para probar el programa
 
 1. int comprarTarjeta(string nombre, int dia, int &m)
 
