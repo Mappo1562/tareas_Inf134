@@ -23,8 +23,20 @@ int saldo_cena ;
 };
 
 
+/*****
+*   int conseguir_saldo(char*rut,int servicio_numerico)
+*****
+*   hace que la funcion unDia se pueda ejecutar un numero determinado de veces y imprime por pantalla al ganador con su fecha de nacimiento y su puntaje
+*****
+*   input:
+*   int servicio_numerico : un numero que representa el servicio que quiere la persona
+*   char *rut : un arreglo con el rut del posible colaborador
+*****
+*   return:
+*       int, retorna la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
+*****/
 
-int conseguir_saldo(char*rut,int servicio_numerico){//                              la idea es que retorne la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
+int conseguir_saldo(char*rut,int servicio_numerico){//                              retorna la cantidad de saldo que tiene para el servicio que quiere, si no es colaborador retorna 0
     int n,saldo=0;
     ifstream file;
     SaldoColaborador cliente;
@@ -58,6 +70,18 @@ int conseguir_saldo(char*rut,int servicio_numerico){//                          
 }
                               
 
+/*****
+*   string identificar_servicio(int servicionumerico)
+*****
+*   pasa el numero a un string escrito de la misma manera que estan escritos en el archivo txt
+*****
+*   input:
+*   int servicio_numerico : un numero que representa el servicio que quiere la persona
+*****
+*   return:
+*       string, entrega un string en mayusculas listo para ser comparado con el archivo txt
+*****/
+
 
 string identificar_servicio(int servicionumerico){//                                entrega un string en mayusculas listo para ser comparado con el archivo txt
     string servicio;
@@ -77,6 +101,20 @@ string identificar_servicio(int servicionumerico){//                            
     return servicio;
 }
 
+
+/*****
+*   int gastos(string servicio,string consumos_dia,char* rut)
+*****
+*   calcula cuantos servicios iguales ha tenido en el dia
+*****
+*   input:
+*   string servicio : un string en matusculas con el servicio pedido por la persona
+*   string consumos_dia : un string con el respectivo nombre del archivo txt
+*   char rut : un arreglo con el rut de la persona
+*****
+*   return:
+*       int, retorna cuantos servicios del mismo tipo ha usado en el dia
+*****/
 
 
 int gastos(string servicio,string consumos_dia,char* rut){//              calcula cuantos servicios del mismo tipo ha usado en el dia
@@ -107,6 +145,20 @@ int gastos(string servicio,string consumos_dia,char* rut){//              calcul
 }
 
 
+/*****
+*   void actualizartxt(char* rut, string servicio, string consumos_dia)
+*****
+*   luego de hacer el pedido esta funcion actualiza el archivo txt con el nuevo consumo
+*****
+*   input:
+*   char rut : un arreglo con el rut de la persona
+*   string servicio : un string en matusculas con el servicio pedido por la persona
+*   string consumos_dia : un string con el respectivo nombre del archivo txt
+*****
+*   return:
+*       no retorna nada
+*****/
+
 
 void actualizartxt(char* rut, string servicio, string consumos_dia){//              como el nombre lo dice actualiza el archivo .txt con el nuevo consumo
     fstream file;
@@ -120,8 +172,20 @@ void actualizartxt(char* rut, string servicio, string consumos_dia){//          
 }
 
 
+/*****
+*   void creartxt(string consumos_dia)
+*****
+*   revisa si el archivo txt con el nombre de consumos_dia existe, y si no lo crea
+*****
+*   input:
+*   string consumos_dia : un string con el respectivo nombre del archivo txt
+*****
+*   return:
+*       no retorna nada
+*****/
 
-void creartxt(string consumos_dia){//                                               si el archivo no existe lo crea
+
+void creartxt(string consumos_dia){
     fstream file;
     file.open(consumos_dia, ios::app);
     if(!file.is_open()){
@@ -134,6 +198,19 @@ void creartxt(string consumos_dia){//                                           
 }
 
 
+/*****
+*   bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia)
+*****
+*   revisa si el usuario puede consumir un respectivo servicio o no
+*****
+*   input:
+*   char rut : un arreglo con el rut de la persona
+*   int servicio_numerico : un numero que representa el servicio que quiere la persona
+*   string consumos_dia : un string con el respectivo nombre del archivo txt
+*****
+*   return:
+*       bool, retorna verdadero si puede consumir y falso si no
+*****/
 
 
 bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){

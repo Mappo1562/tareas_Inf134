@@ -1,0 +1,11 @@
+nombre:     Pablo Acuña
+rol:        202273623-2
+paralelo:   203
+
+nombre:     Ignacio Serrano
+rol:        202273577-5
+paralelo:   203
+
+nombre:     Alejandro Vergara
+rol:        202273568-6
+paralelo:   200
