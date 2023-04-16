@@ -46,9 +46,8 @@ void print(Persona* personas){
 
 int* comprarTarjeta(string nombre, int dia, int &m){
     int* ret=new int[nombre.size()];
-    for (unsigned int i=0 ; i<nombre.size() ; i++){
+    for (unsigned int i=0 ; i<nombre.size() ; i++)
         ret[i] = nombre[i]%dia;
-    }
     m=nombre.size();
     return ret;
 }
@@ -108,7 +107,7 @@ int puntaje(Persona* p1){
 *       bool, retorna verdadero si tienen un numero en comun y en el caso contrario retorna falso
 *****/
 
-bool numero_comun(Persona a, Persona b, int tamanio){//                         variable creada para ver si tienen por lo menos 1 numero en comun
+bool numero_comun(Persona a, Persona b, int tamanio){//                         funcion creada para ver si tienen por lo menos 1 numero en comun
     for(int i=0 ; i<tamanio ; i++)
         if(a.tarjeta[i]==b.tarjeta[i])
             return 1;
@@ -152,7 +151,7 @@ Persona* unDia(Persona* personas, int dia){
                             tamanio=personas[i].tamanio_tarjeta;
                         else
                             tamanio=personas[j].tamanio_tarjeta;
-                        if(numero_comun(personas[i],personas[j],tamanio)){//    variable creada para ver si tienen por lo menos 1 numero en comun
+                        if(numero_comun(personas[i],personas[j],tamanio)){//    funcion creada para ver si tienen por lo menos 1 numero en comun
                             intercambiarTarjeta(&personas[i],&personas[j]);
                             sigo=1;//                                           la flag seguira siendo 1 si por lo menos una persona cambio
                         }
