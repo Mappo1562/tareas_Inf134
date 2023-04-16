@@ -19,7 +19,7 @@ struct Persona {
 /*
 void print(Persona* personas){
     for (int i=0 ; i<p ; i++){
-        cout<<personas[i].nombre<<" ";//                                esta variable fue creada con el fin de ver que las pruebas funcionen bien
+        cout<<personas[i].nombre<<" ";//                                esta funcion fue creada con el fin de ver que las pruebas funcionen bien
         for (int j=0 ; j<personas[i].tamanio_tarjeta ; j++)
             cout<<personas[i].tarjeta[j];
         cout<<"\n";
