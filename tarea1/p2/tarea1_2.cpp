@@ -16,7 +16,6 @@ struct Persona {
 
 
 
-/*
 void print(Persona* personas){
     for (int i=0 ; i<p ; i++){
         cout<<personas[i].nombre<<" ";//                                esta funcion fue creada con el fin de ver que las pruebas funcionen bien
@@ -25,7 +24,7 @@ void print(Persona* personas){
         cout<<"\n";
     }
 }
-*/
+
 
 
 
@@ -66,12 +65,12 @@ int* comprarTarjeta(string nombre, int dia, int &m){
 *****/
 
 void intercambiarTarjeta(Persona* p1, Persona* p2){
+    cout<<"entre a intercambiar con "<<p1->nombre<<" y "<<p2->nombre<<"\n";
     int* copia = (*p1).tarjeta ,copiat = (*p1).tamanio_tarjeta;
     (*p1).tarjeta=(*p2).tarjeta;
     (*p1).tamanio_tarjeta=(*p2).tamanio_tarjeta;
     (*p2).tarjeta=copia;
     (*p2).tamanio_tarjeta=copiat;
-    (*p1).quiere_intercambiar=0;
 }
 
 /*****
@@ -117,7 +116,7 @@ bool numero_comun(Persona a, Persona b, int tamanio){//                         
 /*****
 *   Persona* unDia(Persona* personas, int dia)
 *****
-*   hace que todas las personas compren su tarjeta diaria, luego hace que se intercambien cuando cumplan los requisitos, luego verifica a el ganador
+*   hace que todas las personas compren su tarjeta diaria, luego hace que se intercambien cuando cumplan los requisitos, hace que los que intercambiaron quieran intercambiar otra vez, luego verifica a el ganador
 *****
 *   input:
 *   Persona* personas : un arreglo de p personas
@@ -139,13 +138,19 @@ Persona* unDia(Persona* personas, int dia){
     print(personas);
     cout<<"\n";
 */
-    bool sigo=1;
-    while(sigo){//                                                              ciclos para cambios de tarjetas
-        sigo=0;
-        for(int i=0 ; i<p ; i++){
-            if (personas[i].quiere_intercambiar){
-                for(int j=0 ; j<p ; j++){
-                    if(personas[j].quiere_intercambiar && j!=i){
+    int* arr=new int [p];
+    int c=0;
+    bool flag;
+    for(int i=0 ; i<p ; i++){
+        flag=1;
+        if (personas[i].quiere_intercambiar==1){
+            for(int j=0 ; j<p ; j++){
+                if(personas[j].quiere_intercambiar && j!=i){
+                    for (int k=0;k<c;k++){
+                        if(arr[k]==j)
+                            flag=0;
+                    }
+                    if (flag){
                         int tamanio;
                         if (personas[i].tamanio_tarjeta < personas[j].tamanio_tarjeta)
                             tamanio=personas[i].tamanio_tarjeta;
@@ -153,13 +158,24 @@ Persona* unDia(Persona* personas, int dia){
                             tamanio=personas[j].tamanio_tarjeta;
                         if(numero_comun(personas[i],personas[j],tamanio)){//    funcion creada para ver si tienen por lo menos 1 numero en comun
                             intercambiarTarjeta(&personas[i],&personas[j]);
-                            sigo=1;//                                           la flag seguira siendo 1 si por lo menos una persona cambio
+                            arr[c++]=i;
                         }
                     }
                 }
             }
         }
     }
+
+    c=0;
+    for (int i=0;i<p;i++){//                                                    se agrega otra vez a las personas que querian intercambiar
+        if (i==arr[c]){
+            c++;
+            personas[i].quiere_intercambiar=1;
+        }
+
+    }
+
+    delete[] arr;
 /*
     cout<<"despues del intercambio:\n";
     print(personas);
@@ -208,7 +224,8 @@ int main(){
         cin>>personas[i].fecha;
         cin>>personas[i].quiere_intercambiar;
     }
-/*                                                  main utilizado para las pruebas con el archivo "arch.txt"
+
+/*                                                //main utilizado para las pruebas con el archivo "arch.txt"
     ifstream file;
     file.open("arch.txt");
     file>>p;
@@ -219,6 +236,6 @@ int main(){
         file>>personas[i].quiere_intercambiar;
     }
 */
-    variosDias(personas,p);
+    variosDias(personas,2);
     return 0;
 }
