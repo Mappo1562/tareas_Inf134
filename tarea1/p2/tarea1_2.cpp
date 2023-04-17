@@ -65,12 +65,12 @@ int* comprarTarjeta(string nombre, int dia, int &m){
 *****/
 
 void intercambiarTarjeta(Persona* p1, Persona* p2){
-    cout<<"entre a intercambiar con "<<p1->nombre<<" y "<<p2->nombre<<"\n";
     int* copia = (*p1).tarjeta ,copiat = (*p1).tamanio_tarjeta;
     (*p1).tarjeta=(*p2).tarjeta;
     (*p1).tamanio_tarjeta=(*p2).tamanio_tarjeta;
     (*p2).tarjeta=copia;
     (*p2).tamanio_tarjeta=copiat;
+    (*p1).quiere_intercambiar=0;
 }
 
 /*****
@@ -140,26 +140,20 @@ Persona* unDia(Persona* personas, int dia){
 */
     int* arr=new int [p];
     int c=0;
-    bool flag;
+
     for(int i=0 ; i<p ; i++){
-        flag=1;
+
         if (personas[i].quiere_intercambiar==1){
             for(int j=0 ; j<p ; j++){
                 if(personas[j].quiere_intercambiar && j!=i){
-                    for (int k=0;k<c;k++){
-                        if(arr[k]==j)
-                            flag=0;
-                    }
-                    if (flag){
-                        int tamanio;
-                        if (personas[i].tamanio_tarjeta < personas[j].tamanio_tarjeta)
-                            tamanio=personas[i].tamanio_tarjeta;
-                        else
-                            tamanio=personas[j].tamanio_tarjeta;
-                        if(numero_comun(personas[i],personas[j],tamanio)){//    funcion creada para ver si tienen por lo menos 1 numero en comun
-                            intercambiarTarjeta(&personas[i],&personas[j]);
-                            arr[c++]=i;
-                        }
+                    int tamanio;
+                    if (personas[i].tamanio_tarjeta < personas[j].tamanio_tarjeta)
+                        tamanio=personas[i].tamanio_tarjeta;
+                    else
+                        tamanio=personas[j].tamanio_tarjeta;
+                    if(numero_comun(personas[i],personas[j],tamanio)){//    funcion creada para ver si tienen por lo menos 1 numero en comun
+                        intercambiarTarjeta(&personas[i],&personas[j]);
+                        arr[c++]=i;
                     }
                 }
             }
@@ -216,7 +210,7 @@ void variosDias(Persona* personas, int cant_dias){
 }
 
 int main(){
-
+/*
     cin>>p;
     Persona personas[p];
     for(int i=0;i<p;i++){
@@ -224,8 +218,8 @@ int main(){
         cin>>personas[i].fecha;
         cin>>personas[i].quiere_intercambiar;
     }
-
-/*                                                //main utilizado para las pruebas con el archivo "arch.txt"
+*/
+                                                //main utilizado para las pruebas con el archivo "arch.txt"
     ifstream file;
     file.open("arch.txt");
     file>>p;
@@ -235,7 +229,7 @@ int main(){
         file>>personas[i].fecha;
         file>>personas[i].quiere_intercambiar;
     }
-*/
+
     variosDias(personas,2);
     return 0;
 }
