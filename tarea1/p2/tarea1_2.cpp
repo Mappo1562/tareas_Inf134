@@ -44,11 +44,12 @@ void print(Persona* personas){
 *****/
 
 int* comprarTarjeta(string nombre, int dia, int &m){
-    int* ret=new int[nombre.size()];
-    for (unsigned int i=0 ; i<nombre.size() ; i++)
-        ret[i] = nombre[i]%dia;
+    int* c=new int[nombre.size()];
+    for (unsigned int i=0 ; i<nombre.size() ; i++){
+        c[i] = nombre[i]%dia;
+    }
     m=nombre.size();
-    return ret;
+    return c;
 }
 
 /*****
@@ -133,11 +134,11 @@ Persona* unDia(Persona* personas, int dia){
         personas[i].tarjeta=comprarTarjeta(personas[i].nombre, dia, m);
         personas[i].tamanio_tarjeta=m;
     }
-/*
+
     cout<<"dia = "<<dia<<"\n";
     print(personas);
     cout<<"\n";
-*/
+
     int* arr=new int [p];
     int c=0;
 
@@ -170,11 +171,11 @@ Persona* unDia(Persona* personas, int dia){
     }
 
     delete[] arr;
-/*
+
     cout<<"despues del intercambio:\n";
     print(personas);
     cout<<"\n";
-*/
+
     Persona* ganador=&personas[0];
     puntajemax=puntaje(ganador);
     for(int i=0 ; i<p ; i++){
@@ -184,6 +185,12 @@ Persona* unDia(Persona* personas, int dia){
             puntajemax=puntos;
         }
     }
+
+
+    for(int i=0 ; i<p ; i++){//                                                 se libera la memoria dinamica de las tarjetas
+        delete[] personas[i].tarjeta;
+    }
+
 
     return ganador;
 }
