@@ -1,11 +1,14 @@
 nombre:     Pablo Acuña
 rol:        202273623-2
 paralelo:   203
+trabajo en tarea1_2.cpp
 
 nombre:     Ignacio Serrano
 rol:        202273577-5
 paralelo:   203
+trabajo en la tarea1_2.cpp
 
 nombre:     Alejandro Vergara
 rol:        202273568-6
 paralelo:   200
+trabajo en la tarea1_1.cpp
