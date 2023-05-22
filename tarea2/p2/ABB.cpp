@@ -86,7 +86,7 @@ void tabb::remove(tipoElem item){
 
 
 
-void size(){
+int tabb::size(){
 
 }
 
