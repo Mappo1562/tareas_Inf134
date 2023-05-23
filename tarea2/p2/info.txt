@@ -1,0 +1,1 @@
+funcion remove no funciona bien cuando el nodo a eliminar posee 2 hijos.

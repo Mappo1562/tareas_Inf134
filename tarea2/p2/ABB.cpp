@@ -85,44 +85,78 @@ tabb::~tabb(){
 
 
 
-tNodoArbolBin* find_predecesor(tNodoArbolBin* raiz){
+tNodoArbolBin* find_padre(tNodoArbolBin *raiz,tipoElem x){
+    if (raiz->info==x){
+        cout<<"****    ERROR    ****\nel dato "<<x<<" es la raiz del arbol, no tiene padre\nerror en ABB.cpp linea 88\n";
+    }
+    if (x<raiz->info){
+        if(raiz->izq->info==x){
+            return raiz;
+        }
+        else{
+            return find_padre(raiz->izq,x);
+        }
+    }
+    if (x>raiz->info){
+        if(raiz->der->info==x){
+            return raiz;
+        }
+        else{
+            return find_padre(raiz->der,x);
+        }
+    }
+    return 0;
+    
+}
+
+tNodoArbolBin* find_predecesor(tNodoArbolBin *raiz){
     if (raiz->der==NULL)
         return raiz;
     return find_predecesor(raiz->der);
 }
 
-void removeHelp(tNodoArbolBin *nodo, tipoElem item){
+void removeHelp(tNodoArbolBin *&nodo, tipoElem item){
     if (nodo->info==item){
         if (nodo->izq==NULL && nodo->der==NULL){
             delete[] nodo;
             nodo=NULL;
+            return;
         }
         else if (nodo->izq!=NULL && nodo->der==NULL){
             tNodoArbolBin *aux=nodo->izq;
             delete[] nodo;
             nodo=aux;
+            return;
         }
         else if (nodo->der!=NULL && nodo->izq==NULL){
             tNodoArbolBin *aux=nodo->der;
             delete[] nodo;
             nodo=aux;
+            return;
         }
+/*
         else{
             tNodoArbolBin* aux=find_predecesor(nodo->izq);
             nodo->info=aux->info;
-            if (aux->izq==NULL)
+            if (aux->izq==NULL){
                 delete[] aux;
+                aux=NULL;
+                return;
+            }
             else{
-                tNodoArbolBin* alo=nodo->izq;
+                tNodoArbolBin* auxx=aux->izq;
+                tNodoArbolBin* padre=find_padre(aux,aux->info);
                 delete[] aux;
-                aux=alo;
+                return;
             }
         }
+*/
     }
-    if (nodo == NULL) return;
-    if (item < nodo->info)
+    if (nodo == NULL) 
+        return;
+    else if (item < nodo->info)
         removeHelp(nodo->izq, item);
-    else
+    else if (item>nodo->info)
         removeHelp(nodo->der, item);
 }
 
