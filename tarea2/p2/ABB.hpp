@@ -3,7 +3,7 @@
 #include <cstring>
 
 using namespace std;
-typedef tipoElem;
+typedef int tipoElem;
 
 
 struct tNodoArbolBin{
@@ -38,5 +38,5 @@ class tabb{
         void postOrden();//             recorrido post-orden de un ABB
 
 
-        int lower_bound(tipoElem x)//      busca el primer valor que sea menor o igual a x.
+        int lower_bound(tipoElem x);//   busca el primer valor que sea menor o igual a x.
 };
