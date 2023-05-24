@@ -1,16 +1,23 @@
 #include "ABB.hpp"
 
 /*
- en este cpp estan incluidas las funciones del arbol binario de busqueda, 
- las funciones pedidas en la tarea estan a partir de la linea 146 del codigo
+ en este cpp no estan incluidas las todas funciones del arbol binario de busqueda, 
+ solo estan presentes las utilizadas para la tarea, las pedidas literalmente estan 
+ desde la linea
 */
 
-void procesar(tipoElem info){
-    cout<<info<<"\n";
-    return;
-}
 
 
+/*****
+*   tabb::tabb()
+******
+*   esta funcion tiene el proposito de crear un ABB
+******
+* Input:
+******
+* Returns:
+*   un ABB vacio
+*****/
 
 tabb::tabb(){
     raiz = NULL;
@@ -18,6 +25,18 @@ tabb::tabb(){
 }
 
 
+
+/*****
+*   void clearHelp(tNodoArbolBin *nodo)
+******
+*   esta funcion tiene el proposito de ser recursiva para ayudara la funcion clear y lograr eliminar los datos en el ABB
+******
+* Input:
+*   tNodoArbolBin *nodo  : la respectiva raiz de un sub arbol binario
+******
+* Returns:
+*   libera la memoria del ABB
+*****/
 
 void clearHelp(tNodoArbolBin *nodo) {
     if (nodo == NULL) return; //    árbol vacío, se detiene
@@ -28,181 +47,103 @@ void clearHelp(tNodoArbolBin *nodo) {
 
 
 
+/*****
+*   void tabb::clear()
+******
+*   esta funcion tiene el proposito de eleiminar el arbol llamando a la funcion recursiva clearHelp
+******
+* Input:
+******
+* Returns:
+*   cambia nElems a 0
+*   deja la raiz apuntando a NULL
+*****/
+
 void tabb::clear() {
- clearHelp(raiz); // función auxiliar para eliminar los nodos
+ clearHelp(raiz);
  raiz = NULL;
  nElems = 0;
 }
 
 
 
-void preOrdenHelp(tNodoArbolBin *nodo){
-    if (nodo == NULL) return;
-    procesar(nodo->info); //        procesa nodo actual (se hace lo que necesite)
-    preOrdenHelp (nodo->izq); //     visita hijo izquierdo en pre-orden
-    preOrdenHelp (nodo->der); //     visita hijo derecho en pre-orden
-}
-
-void tabb::preOrden(){
-    preOrdenHelp(raiz);
-}
-
-
-
-void inOrdenHelp (tNodoArbolBin *nodo) {
-    if (nodo == NULL) return;
-    inOrdenHelp (nodo->izq); //     visita hijo izquierdo en in-orden
-    procesar(nodo->info); //        procesa nodo actual (se hace lo que necesite)
-    inOrdenHelp (nodo->der); //     visita hijo derecho en in-orden
-}
-
-void tabb::inOrden () {
-    inOrdenHelp (raiz);
-}
-
-
-
-void postOrdenHelp(tNodoArbolBin *nodo){
-    if (nodo == NULL) return;
-    postOrdenHelp (nodo->izq); //     visita hijo izquierdo en post-orden
-    postOrdenHelp (nodo->der); //     visita hijo derecho en post-orden
-    procesar(nodo->info); //        procesa nodo actual (se hace lo que necesite)
-}
-
-void tabb::postOrden(){
-    postOrdenHelp(raiz);
-}
-
-
-
-//          ojo
-
-
-
-tabb::~tabb(){
-    clear();
-}
-
-
-
-tNodoArbolBin* find_padre(tNodoArbolBin *raiz,tipoElem x){
-    if (raiz->info==x){
-        cout<<"****    ERROR    ****\nel dato "<<x<<" es la raiz del arbol, no tiene padre\nerror en ABB.cpp linea 88\n";
-    }
-    if (x<raiz->info){
-        if(raiz->izq->info==x)
-            return raiz;
-        
-        else
-            return find_padre(raiz->izq,x);
-        
-    }
-    if (x>raiz->info){
-        if(raiz->der->info==x)
-            return raiz;
-        
-        else
-            return find_padre(raiz->der,x);
-    }
-    return 0;
-    
-}
-
-tNodoArbolBin* find_predecesor(tNodoArbolBin *raiz){
-    if (raiz->der==NULL)
-        return raiz;
-    return find_predecesor(raiz->der);
-}
-
-void removeHelp(tNodoArbolBin *&nodo, tipoElem item){
-    if (nodo->info==item){
-        if (nodo->izq==NULL && nodo->der==NULL){
-            delete[] nodo;
-            nodo=NULL;
-            return;
-        }
-        else if (nodo->izq!=NULL && nodo->der==NULL){
-            tNodoArbolBin *aux=nodo->izq;
-            delete[] nodo;
-            nodo=aux;
-            return;
-        }
-        else if (nodo->der!=NULL && nodo->izq==NULL){
-            tNodoArbolBin *aux=nodo->der;
-            delete[] nodo;
-            nodo=aux;
-            return;
-        }
-
-        else{
-            tNodoArbolBin* aux=find_predecesor(nodo->izq);
-            nodo->info=aux->info;
-            removeHelp(nodo->izq,nodo->info);
-            return;
-/*
-            if (aux->izq==NULL){
-                delete[] aux;
-                aux=NULL;
-                return;
-            }
-            else{
-                tNodoArbolBin* auxx=aux->izq;
-                tNodoArbolBin* padre=find_padre(aux,aux->info);
-                delete[] aux;
-                return;
-            }
-*/
-        }
-
-    }
-    if (nodo == NULL) 
-        return;
-    else if (item < nodo->info)
-        removeHelp(nodo->izq, item);
-    else if (item>nodo->info)
-        removeHelp(nodo->der, item);
-}
-
-void tabb::remove(tipoElem item){
-    if (find(item)){
-        removeHelp(raiz,item);
-        nElems--;
-    }
-    else{
-        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar\nerror en ABB.cpp linea 163\n";
-    }
-}
-
-
+/*****
+*   int tabb::size()
+******
+*   esta funcion tiene el proposito de retornar cuantos valores tiene el arbol
+******
+* Input:
+******
+* Returns:
+*   retorna cuantos elementos tiene el arbol
+*****/
 
 int tabb::size(){
     return nElems;
 }
 
 
+
+
+
 //// ***    funciones pedidas en la tarea    *** ////
 
 
-//      insert:
+
+
+
+
+                /////     insert:     /////
+
+
+/*****
+*   void insertHelp(tNodoArbolBin *&nodo, tipoElem item,bool &flag)
+******
+*   esta funcion tiene el proposito de ser recursiva para ayudara la funcion insert y lograr insertar un dato en el ABB
+******
+* Input:
+*   tNodoArbolBin *&nodo : la respectiva raiz de un sub arbol binario
+*   tipoElem item        : es el dato que se desea ingresar al ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+*   bool flag            : una flag que determina si el dato fue ingresado correctamente o no
+******
+* Returns:
+*   retorna la flag por referencia
+*   retorna el arbol por referencia con sus respectivos camios, si existieron
+*****/
+
 void insertHelp(tNodoArbolBin *&nodo, tipoElem item,bool &flag){
-    if (nodo==NULL){
+    if (nodo==NULL){//                                              si el nodo es null indica que ahi se ingresara el dato
         nodo=new tNodoArbolBin;
         nodo->info=item;
         nodo->izq=NULL;
         nodo->der=NULL;
         flag= 1;
     }
-    else if (item<nodo->info)
+    else if (item<nodo->info)//                                     si el dato a ingresar es menor al valor del nodo se evaluara la funcion en su hijo izquierdo
         insertHelp(nodo->izq,item,flag);
 
-    else if (item>nodo->info)
+    else if (item>nodo->info)//                                     si el dato a ingresar es mayor al valor del nodo se evaluara la funcion en su hijo derecho
         insertHelp(nodo->der,item,flag);
 
-    else if (item==nodo->info){
-        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 167\n";
+    else if (item==nodo->info){//                                   si el dato a ingresar es igual al valor del nodo no se insertara en el arbol y la flag sera false para no aumentar nElems
+        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 148/114\n";
         flag= 0;
     }
 }
+
+
+
+/*****
+*   void tabb::insert(tipoElem item)
+******
+*   esta funcion tiene el proposito de insertar un dato al ABB, solo llama a la funcion insertHelp y verifica que la flag sea 1
+******
+* Input:
+*   tipoElem item : el dato que se quiere ingresar al ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+******
+* Returns:
+*   si la insercion fue exitosa aumenta nElemes en 1
+*****/
 
 void tabb::insert(tipoElem item){
     bool flag;
@@ -213,7 +154,22 @@ void tabb::insert(tipoElem item){
 
 
 
-//find:
+                /////     find:     /////
+
+
+/*****
+*   int findHelp(tNodoArbolBin *nodo, tipoElem item)
+******
+*   esta funcion tiene el proposito de ser recursiva para ayudara la funcion find y lograr encontrar un dato en el ABB
+******
+* Input:
+*   tNodoArbolBin *&nodo : la respectiva raiz de un sub arbol binario
+*   tipoElem item        : es el dato que se desea encontrar en el ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+******
+* Returns:
+*   retorna true si encuentra al valor y false si no lo encuentra
+*****/
+
 int findHelp(tNodoArbolBin *nodo, tipoElem item) {
     if (nodo == NULL) 
         return 0; // item no está en el ABB
@@ -225,13 +181,43 @@ int findHelp(tNodoArbolBin *nodo, tipoElem item) {
         return findHelp(nodo->der, item);
 }
 
+
+
+/*****
+*   int tabb::find(tipoElem item)
+******
+*   esta funcion tiene el proposito de llamar a findHelp y lograr insertar un dato en el ABB
+******
+* Input:
+*   tipoElem item        : es el dato que se desea ingresar al ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+******
+* Returns:
+*   retorna true si encuentra al valor y false si no lo encuentra
+*****/
+
 int tabb::find(tipoElem item) {
- return findHelp(raiz, item);
+    return findHelp(raiz, item);
 }
 
 
 
-//lower_bound:
+                /////     lower_bound:     /////
+
+
+/*****
+*   int lowerHelp(tNodoArbolBin* raiz,tipoElem x, int &opcion)
+******
+*   esta funcion tiene el proposito de ser recursiva para ayudara la funcion lower_bound y lograr encontrar el dato mas cercano menor o igual a x
+******
+* Input:
+*   tNodoArbolBin *&nodo : la respectiva raiz de un sub arbol binario
+*   tipoElem item        : es el dato del que se desea encontrar su menor o igual mas cercano en el ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+*   int &opcion          : variable que guarda una posible opcion hasta llegar a la opcion definitiva
+******
+* Returns:
+*   retorna la opcion resultante por referencia
+*****/
+
 void lowerHelp(tNodoArbolBin* raiz,tipoElem x, int &opcion){
     if (raiz==NULL) 
         return;
@@ -240,17 +226,33 @@ void lowerHelp(tNodoArbolBin* raiz,tipoElem x, int &opcion){
         return;
     }
     if (x<raiz->info)
-        lowerHelp(raiz->izq,x,opcion);
+        return lowerHelp(raiz->izq,x,opcion);
     if (x>raiz->info){
         opcion=raiz->info;
-        lowerHelp(raiz->der,x,opcion);
+        return lowerHelp(raiz->der,x,opcion);
     }
 }
+
+
+
+/*****
+*   int tabb::lower_bound(tipoElem x)
+******
+*   esta funcion tiene el proposito de llamar a lowerHelp y lograr insertar un dato en el ABB
+******
+* Input:
+*   tipoElem item        : es el dato del que se desea encontrar su menor o igual mas cercano en el ABB, resumido es un int ( linea 7 de ABB.hpp "typedef int tipoElem;")
+******
+* Returns:
+*   retorna la opcion, si esta no se encuentra se retorna -1
+*****/
 
 int tabb::lower_bound(tipoElem x){
     int opcion=-1;
     lowerHelp(raiz,x,opcion);
+/*
     if (opcion ==-1)
-        cout<<"****    ERROR    ****\nel dato "<<x<<" no existe y no tiene predecesor\nerror en ABB.cpp linea 210\n";
+        cout<<"****    ERROR    ****\nel dato "<<x<<" no existe y no tiene predecesor\nerror en ABB.cpp linea 250\n";
+*/
     return opcion;
 }
