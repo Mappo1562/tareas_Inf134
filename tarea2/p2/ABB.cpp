@@ -126,7 +126,7 @@ void insertHelp(tNodoArbolBin *&nodo, tipoElem item,bool &flag){
         insertHelp(nodo->der,item,flag);
 
     else if (item==nodo->info){//                                   si el dato a ingresar es igual al valor del nodo no se insertara en el arbol y la flag sera false para no aumentar nElems
-        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 148/114\n";
+        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 148 / 114\n";
         flag= 0;
     }
 }
