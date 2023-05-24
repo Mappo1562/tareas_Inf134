@@ -2,7 +2,7 @@
 
 /*
  en este cpp no estan incluidas las todas funciones del arbol binario de busqueda, 
- solo estan presentes las utilizadas para la tarea, las pedidas literalmente estan 
+ solo estan presentes las utilizadas en la tarea, las pedidas literalmente estan 
  desde la linea 89
 */
 
