@@ -23,7 +23,7 @@ int main(){
     arbol.preOrden();
 
     arbol.clear();
-/*
+
     arbol.insert(28);
     arbol.insert(16);
     arbol.insert(30);
@@ -32,9 +32,8 @@ int main(){
     arbol.insert(29);
     arbol.insert(32);
     arbol.insert(12);
-    arbol.insert(20);
-    arbol.insert(18);
-    arbol.insert(23);
+
+
 
     cout<<"\n";
     cout<<"\n";
@@ -42,7 +41,7 @@ int main(){
     arbol.remove(28);
     cout<<"\n";cout<<"\n";
     arbol.preOrden();
-*/
+
 
     return 0;
 }

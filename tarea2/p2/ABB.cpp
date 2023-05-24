@@ -90,20 +90,19 @@ tNodoArbolBin* find_padre(tNodoArbolBin *raiz,tipoElem x){
         cout<<"****    ERROR    ****\nel dato "<<x<<" es la raiz del arbol, no tiene padre\nerror en ABB.cpp linea 88\n";
     }
     if (x<raiz->info){
-        if(raiz->izq->info==x){
+        if(raiz->izq->info==x)
             return raiz;
-        }
-        else{
+        
+        else
             return find_padre(raiz->izq,x);
-        }
+        
     }
     if (x>raiz->info){
-        if(raiz->der->info==x){
+        if(raiz->der->info==x)
             return raiz;
-        }
-        else{
+        
+        else
             return find_padre(raiz->der,x);
-        }
     }
     return 0;
     
@@ -134,10 +133,13 @@ void removeHelp(tNodoArbolBin *&nodo, tipoElem item){
             nodo=aux;
             return;
         }
-/*
+
         else{
             tNodoArbolBin* aux=find_predecesor(nodo->izq);
             nodo->info=aux->info;
+            removeHelp(nodo->izq,nodo->info);
+            return;
+/*
             if (aux->izq==NULL){
                 delete[] aux;
                 aux=NULL;
@@ -149,8 +151,9 @@ void removeHelp(tNodoArbolBin *&nodo, tipoElem item){
                 delete[] aux;
                 return;
             }
-        }
 */
+        }
+
     }
     if (nodo == NULL) 
         return;
@@ -166,7 +169,7 @@ void tabb::remove(tipoElem item){
         nElems--;
     }
     else{
-        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar\nerror en ABB.cpp linea 129\n";
+        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar\nerror en ABB.cpp linea 163\n";
     }
 }
 
