@@ -4,7 +4,10 @@
 
 using namespace std;
 
-// Definición de la estructura de un nodo de la lista enlazada
+/***** 
+* Definición de la estructura de un nodo de la lista enlazada
+*****/
+
 struct Nodo {
     char nucleotido;
     Nodo* siguiente;
