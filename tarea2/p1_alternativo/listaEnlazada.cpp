@@ -4,12 +4,12 @@
 /*****
 *   tLista::tLista()
 ******
-*  este es el constructor de una Lista Enlazada
+*  este es el método constructor de una Lista Enlazada
 ******
 * Input:
 ******
-* Returns:
-*   Lista 
+* Return:
+*   Crea la Lista
 *****/
 
 tLista::tLista() {
@@ -21,11 +21,11 @@ tLista::tLista() {
 /*****
 *   tLista::~tLista()
 ******
-*  este es el destructor de una Lista Enlazada
+*  este es el método destructor de una Lista Enlazada
 ******
-* Input: Es la Lista
+* Input: 
 ******
-* Returns:
+* Return:
 *   Elimina la Lista 
 *****/
 
@@ -37,12 +37,13 @@ tLista::~tLista(){
 /*****
 *   void tLista::clear()
 ******
-*  Esta es la función para reiniciar la Lista Vacia 
+*  Esta es el método para reiniciar la Lista a vacía
 ******
-* Input: Es la Lista
+* Input:
+*   Lista
 ******
-* Returns:
-*   Elimina la Lista 
+* Return:
+*   Libera la memoria de la Lista 
 *****/
 
 void tLista::clear() {
@@ -59,6 +60,17 @@ void tLista::clear() {
 
 }
 
+/*****
+*   int tLista::insert(tElemLista item)
+******
+*  Esta es el método para insertar un ítem
+******
+* Input:
+*   Ítem
+******
+* Return:
+*   Lista con el ítem insertado 
+*****/
 
 int tLista::insert(tElemLista item) {
     tNodo* aux = curr->sig;
@@ -71,12 +83,32 @@ int tLista::insert(tElemLista item) {
     return pos;
 }
 
+/*****
+*   void tLista::moveToStart()
+******
+*  Este es el método para mover el puntero al comienzo 
+******
+* Input:
+******
+* Return:
+*   mueve el puntero al comienzo
+*****/
 
 void tLista::moveToStart() { 
     curr = head; 
     pos = 0; 
 }
 
+/*****
+*   void tLista::next()
+******
+*  Este es el método para mover el puntero al siguiente valor 
+******
+* Input:
+******
+* Return:
+*   mueve el puntero al siguiente valor 
+*****/
 
 void tLista::next() { 
     if (curr != tail) { 
@@ -85,6 +117,17 @@ void tLista::next() {
     } 
 }
 
+/*****
+*   void tLista::moveToPos(unsigned int posicion)
+******
+*  Este es el método para mover a una posición definida 
+******
+* Input:
+*   unsigned int posicion: posición a la que se quiere mover
+******
+* Return:
+*   mueve el curr a la posición definida y cambia pos
+*****/
 
 void tLista::moveToPos(unsigned int posicion) {
     if (posicion < 0 || posicion > listSize) 
@@ -97,14 +140,47 @@ void tLista::moveToPos(unsigned int posicion) {
     }
 }
 
+/*****
+*   tElemLista tLista::getValue()
+******
+*  Este es el método para obtener la información de la posición actual
+******
+* Input:
+******
+* Return:
+*   Información de la pocisión actual
+*****/
+
 tElemLista tLista::getValue(){
     return curr->sig->info;
 }
+
+/*****
+*   int tLista::length()
+******
+*  Este es el método para obtener el tamaño de la Lista 
+******
+* Input:
+******
+* Return:
+*   Tamaño de la Lista
+*****/
 
 int tLista::length(){
     return listSize;
 }
 
+/*****
+*   tElemLista tLista::erase()
+******
+*  Este es el método para eliminar el valor en la posición actual
+******
+* Input:
+******
+* Return:
+*   Lista sin el valor de la posición actual
+*   tElemLista ret: el valor eliminado
+*****/
 
 tElemLista tLista::erase() {
     tNodo* eliminar = curr->sig;
@@ -116,6 +192,18 @@ tElemLista tLista::erase() {
     listSize--;
     return ret;
 }
+
+/*****
+*   void tLista::change(tElemLista x)
+******
+*  Este es el método para intercambiar la información actual por la información entregada
+******
+* Input:
+*   tElemLista x: Información entregada para intercambiar 
+******
+* Return:
+*   Lista resultante
+*****/
 
 void tLista::change(tElemLista x){
     curr->sig->info=x;

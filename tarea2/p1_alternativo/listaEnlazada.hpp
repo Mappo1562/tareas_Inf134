@@ -4,48 +4,49 @@
 using namespace std;
 typedef char tElemLista;
 
+// aca se define el tNodo
+
 struct tNodo{
     tElemLista info;
     tNodo* sig;
 };
 
-
+// aca se define la clase  tLista 
 
 class tLista {
     private:
         tNodo* head;
         tNodo* tail;
-        tNodo* curr;//                                      apuntara siempre al nodo anterior del actual, para acceder al valor seria curr->sig->info
+        tNodo* curr;//                       apuntará siempre al nodo anterior del actual, para acceder al valor seria curr->sig->info
         unsigned int listSize;
-        unsigned int pos; // posicion actual en la lista
+        unsigned int pos; //                 posicion actual en la lista
     public:
         tLista();
-        ~tLista();//                        elimina la lista por completo
+        ~tLista();//                         elimina la lista por completo
 
-        void clear();//                     borra todos los elementos de la lista, reinicializándola vacía
+        void clear();//                      borra todos los elementos de la lista, reinicializándola vacía
 
-        int insert(tElemLista item);//      inserta un elemento en la posición actual de la lista
+        int insert(tElemLista item);//       inserta un elemento en la posición actual de la lista
 
-        //int append(tElemLista item);//      agrega un elemento al final de la lista
+        //int append(tElemLista item);//     agrega un elemento al final de la lista
 
-        tElemLista erase();//               borra el elemento actual y retorna su valor
+        tElemLista erase();//                borra el elemento actual y retorna su valor
 
-        void moveToStart();//               mueve la posición actual al comienzo de la lista
+        void moveToStart();//                mueve la posición actual al comienzo de la lista
 
-        //void moveToEnd();//                 mueve la posición actual al final de la lista deja una posicion adelante del ultimo elemento
+        //void moveToEnd();//                mueve la posición actual al final de la lista deja una posicion adelante del ultimo elemento
 
-        void next();//                      mueve la posición actual al siguiente elemento de la lista, no produce cambios si está en la cola de la lista
+        void next();//                       mueve la posición actual al siguiente elemento de la lista, no produce cambios si está en la cola de la lista
 
-        //void prev();//                      mueve la posición actual al elemento anterior de la lista, no produce cambios si está en la cabeza de la lista
+        //void prev();//                     mueve la posición actual al elemento anterior de la lista, no produce cambios si está en la cabeza de la lista
 
-        int length();//                     retorna el número de elementos en la lista
+        int length();//                      retorna el número de elementos en la lista
 
-        //int currPos();//                    retorna la posición del elemento actual
+        //int currPos();//                   retorna la posición del elemento actual
 
-        void moveToPos(unsigned int pos);//          mueve la posición actual a una especificada
+        void moveToPos(unsigned int pos);//  mueve la posición actual a una especificada
         
-        tElemLista getValue();//            obtiene el valor del elemento actual de la lista
+        tElemLista getValue();//             obtiene el valor del elemento actual de la lista
 
-
-        void change(tElemLista x);
+        void change(tElemLista x); //        intercambia el valor entregado por el de la posición actual
 };

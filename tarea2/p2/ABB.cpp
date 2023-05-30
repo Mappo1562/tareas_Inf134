@@ -50,7 +50,7 @@ void clearHelp(tNodoArbolBin *nodo) {
 /*****
 *   void tabb::clear()
 ******
-*   esta funcion tiene el proposito de eleiminar el arbol llamando a la funcion recursiva clearHelp
+*   esta funcion tiene el proposito de eliminar el arbol llamando a la funcion recursiva clearHelp
 ******
 * Input:
 ******
