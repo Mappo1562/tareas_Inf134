@@ -1,7 +1,16 @@
 #include "ListaEnlazada.hpp"
 
 
-
+/*****
+*   tLista::tLista()
+******
+*  este es el constructor de una Lista Enlazada
+******
+* Input:
+******
+* Returns:
+*   Lista 
+*****/
 
 tLista::tLista() {
  head = tail = curr = new tNodo;
@@ -9,10 +18,32 @@ tLista::tLista() {
  pos = 0;
 }
 
+/*****
+*   tLista::~tLista()
+******
+*  este es el destructor de una Lista Enlazada
+******
+* Input: Es la Lista
+******
+* Returns:
+*   Elimina la Lista 
+*****/
+
 tLista::~tLista(){
     clear();
     delete head;
 }
+
+/*****
+*   void tLista::clear()
+******
+*  Esta es la función para reiniciar la Lista Vacia 
+******
+* Input: Es la Lista
+******
+* Returns:
+*   Elimina la Lista 
+*****/
 
 void tLista::clear() {
     tNodo* aux = head->sig;    
