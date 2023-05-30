@@ -216,7 +216,7 @@ void creartxt(string consumos_dia){
 bool puedeConsumir(char* rut, int servicionumerico, string consumos_dia){
     int saldo,gasto;
     string servicio;
-    
+      
     saldo=conseguir_saldo(rut,servicionumerico);
 
     if (!saldo)//                                               retorna falso para todos los que no son colaboradores o a los que no tienen saldo
