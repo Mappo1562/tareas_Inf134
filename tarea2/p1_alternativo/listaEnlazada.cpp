@@ -15,14 +15,13 @@ tLista::~tLista(){
 }
 
 void tLista::clear() {
-    tNodo* aux = head->sig;    // Recorrer la lista y liberar la memoria de cada nodo
+    tNodo* aux = head->sig;    
     while (aux != NULL) {
         tNodo* temp = aux;
         aux = aux->sig;
         delete temp;
     }
-
-    head->sig = NULL;// Reinicializar los punteros y variables de la lista
+    head->sig = NULL;
     tail = curr = head;
     listSize = 0;
     pos = 0;
@@ -41,38 +40,10 @@ int tLista::insert(tElemLista item) {
     return pos;
 }
 
-int tLista::append(tElemLista item){
-    tail->sig= new tNodo;
-    tNodo* aux = tail->sig;
-    aux->info=item;
-    tail=aux;
-    tail->sig=NULL;
-    listSize++;
-    pos=listSize-1;
-    return pos;
-}
 
 void tLista::moveToStart() { 
     curr = head; 
     pos = 0; 
-}
-
-
-void tLista::moveToEnd() { 
-    curr = tail; 
-    pos = listSize; 
-}
-
-
-void tLista::prev() {
-    tNodo* temp;
-    if (curr == head)   
-        return;
-    temp = head;
-    while (temp->sig != curr) 
-        temp = temp->sig;
-    curr = temp;
-    pos--;
 }
 
 
@@ -103,9 +74,6 @@ int tLista::length(){
     return listSize;
 }
 
-int tLista::currPos(){
-    return pos;
-}
 
 tElemLista tLista::erase() {
     tNodo* eliminar = curr->sig;
