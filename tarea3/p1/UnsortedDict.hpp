@@ -9,10 +9,19 @@ typedef int tipoClave; // tipo de clave de cada
 
 typedef int tipoInfo; // tipo de valor de cada
 
+#define VACIA -1
+#define LIBERADA -2
+#define R 2
+
+struct ranura{
+    tipoClave key;
+    tipoInfo info;
+};
+
 
 class UnsortedDict{
     private:
-
+        ranura HT[M];
     public:
 
     UnsortedDict();
@@ -29,3 +38,18 @@ class UnsortedDict{
 
     int size()//                            Retorna el número de registros almacenados
 };
+
+
+class login(){
+    private:
+        int m;
+        ranura usuarios[m];
+
+    public:
+        login();
+        ~login();
+        bool iniciar_sesion(string usuario, string clave);
+        bool crear_nuevo_usuario(string usuario, string clave);
+        bool cambiar_clave(string usuario, string nueva_clave);
+
+}
