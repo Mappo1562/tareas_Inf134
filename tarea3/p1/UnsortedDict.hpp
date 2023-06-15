@@ -43,8 +43,9 @@ class UnsortedDict{
 class login(){
     private:
         int m;
-        ranura usuarios[m];
-
+        int registros;
+        ranura usuarios[];
+        tipoClave claves[];
     public:
         login();
         ~login();
