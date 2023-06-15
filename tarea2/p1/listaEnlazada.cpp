@@ -40,7 +40,6 @@ tLista::~tLista(){
 *  Esta es el método para reiniciar la Lista a vacía
 ******
 * Input:
-*   Lista
 ******
 * Return:
 *   Libera la memoria de la Lista 
@@ -66,7 +65,7 @@ void tLista::clear() {
 *  Esta es el método para insertar un ítem
 ******
 * Input:
-*   Ítem
+*   tElemLista item: item que se desea ingresar al ABB
 ******
 * Return:
 *   Lista con el ítem insertado 
@@ -91,7 +90,7 @@ int tLista::insert(tElemLista item) {
 * Input:
 ******
 * Return:
-*   mueve el puntero al comienzo
+*   mueve el puntero al comienzo y redefine pos=0
 *****/
 
 void tLista::moveToStart() { 
@@ -148,7 +147,7 @@ void tLista::moveToPos(unsigned int posicion) {
 * Input:
 ******
 * Return:
-*   Información de la pocisión actual
+*   retorna la Información del nodo en la pocisión actual
 *****/
 
 tElemLista tLista::getValue(){
@@ -163,7 +162,7 @@ tElemLista tLista::getValue(){
 * Input:
 ******
 * Return:
-*   Tamaño de la Lista
+*   retorna el tamaño de la Lista
 *****/
 
 int tLista::length(){
@@ -173,7 +172,7 @@ int tLista::length(){
 /*****
 *   tElemLista tLista::erase()
 ******
-*  Este es el método para eliminar el valor en la posición actual
+*  Este es el método para eliminar el nodo en la posición actual y retornar su informacion
 ******
 * Input:
 ******
@@ -202,7 +201,7 @@ tElemLista tLista::erase() {
 *   tElemLista x: Información entregada para intercambiar 
 ******
 * Return:
-*   Lista resultante
+*   Lista resultante del intercambio
 *****/
 
 void tLista::change(tElemLista x){

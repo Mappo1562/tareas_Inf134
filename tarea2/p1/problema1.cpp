@@ -1,6 +1,8 @@
 #include "listaEnlazada.hpp"
 
 
+
+//Variable global:
 fstream file;
 
 /*****
@@ -9,10 +11,10 @@ fstream file;
 *  esta es la función que inserta un nucleotido en la posición entregada
 ******
 * Input:
-******
 *   int pos: Posición donde se insertará el nucleotido 
 *   char c: Nucleotido a insertar 
 *   tLista &list: Lista por referencia
+******
 * Return:
 *   Lista resultante
 *****/
@@ -30,9 +32,9 @@ void INSERTAR(int pos,char c, tLista &list){
 *  esta es la función que borra un nucleotido en la posición entregada
 ******
 * Input:
-******
 *   int pos: Posición donde se borrará el nucleotido 
 *   tLista &list: Lista por referencia
+******
 * Return:
 *   Lista resultante
 *****/
@@ -50,10 +52,10 @@ void BORRAR(int pos, tLista &list){
 *  esta es la función que intercambia un nucleotido en la posición entregada
 ******
 * Input:
-******
 *   int pos: Posición donde se intercambiará el nucleotido 
 *   char c: Nucleotido a intercambiar 
 *   tLista &list: Lista por referencia
+******
 * Return:
 *   Lista resultante
 *****/
@@ -71,9 +73,9 @@ void INTERCAMBIAR(int pos, char c, tLista &list){
 *  esta es la función que imprime la Lista de nucleotidos resultantes en el archivo
 ******
 * Input:
-******
 *   tLista &list: Lista por referencia
 *   fstream &ret: Archivo donde se imprimirá la Lista resultante 
+******
 * Return:
 *   Imprime  en el archivo
 *   Vacía la Lista
@@ -96,10 +98,10 @@ void print(tLista &list, fstream &ret){
 *  esta es la función que tiene el propósito de leer las intrucciones
 ******
 * Input:
-******
 *   int m: entero m que indica la cantidad de modificaciones
 *   tLista &list: Lista por referencia
 *   fstream &ret: Archivo donde se imprimirá la Lista resultante 
+******
 * Return:
 *   Realiza la opción pedida
 *****/
@@ -135,9 +137,9 @@ void procedureHelp(int m,tLista &list, fstream &ret){
 *  esta es la función que a partir de un string lo copia a una Lista
 ******
 * Input:
-******
 *   tLista &ret: Archivo donde se imprimirá la Lista resultante 
 *   string original: La secuencia de nucleotidos
+******
 * Return:
 *   tLista ret: Retorna la Lista 
 *****/

@@ -6,12 +6,15 @@
 using namespace std;
 typedef int tipoElem;
 
+//  se define tNodoArbolBin para ser utilizado en el ABB:
 
 struct tNodoArbolBin{
     tipoElem info;
     tNodoArbolBin* izq;
     tNodoArbolBin* der;
 };
+
+//  se define el arbol binario de busqueda:
 
 class tabb{
     private:

@@ -39,10 +39,10 @@ tabb::tabb(){
 *****/
 
 void clearHelp(tNodoArbolBin *nodo) {
-    if (nodo == NULL) return; //    árbol vacío, se detiene
-    clearHelp(nodo->izq); //        visita subárbol izquierdo recursivamente
-    clearHelp(nodo->der); //        visita subárbol derecho recursivamente
-    delete nodo; //                 después de borrar subárboles, se borra a sí mismo
+    if (nodo == NULL) return; 
+    clearHelp(nodo->izq); 
+    clearHelp(nodo->der); 
+    delete nodo; 
 }
 
 
@@ -60,9 +60,9 @@ void clearHelp(tNodoArbolBin *nodo) {
 *****/
 
 void tabb::clear() {
- clearHelp(raiz);
- raiz = NULL;
- nElems = 0;
+    clearHelp(raiz);
+    raiz = NULL;
+    nElems = 0;
 }
 
 
@@ -112,20 +112,20 @@ int tabb::size(){
 *****/
 
 void insertHelp(tNodoArbolBin *&nodo, tipoElem item,bool &flag){
-    if (nodo==NULL){//                                              si el nodo es null indica que ahi se ingresara el dato
+    if (nodo==NULL){
         nodo=new tNodoArbolBin;
         nodo->info=item;
         nodo->izq=NULL;
         nodo->der=NULL;
         flag= 1;
     }
-    else if (item<nodo->info)//                                     si el dato a ingresar es menor al valor del nodo se evaluara la funcion en su hijo izquierdo
+    else if (item<nodo->info)
         insertHelp(nodo->izq,item,flag);
 
-    else if (item>nodo->info)//                                     si el dato a ingresar es mayor al valor del nodo se evaluara la funcion en su hijo derecho
+    else if (item>nodo->info)
         insertHelp(nodo->der,item,flag);
 
-    else if (item==nodo->info){//                                   si el dato a ingresar es igual al valor del nodo no se insertara en el arbol y la flag sera false para no aumentar nElems
+    else if (item==nodo->info){
         cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 148 / 114\n";
         flag= 0;
     }
