@@ -8,4 +8,49 @@ ACTUALIZAR user2 1234
 ACTUALIZAR user3 1234
 INICIAR_SESION user1 password
 REGISTRAR user2 password
+PRINT
+REGISTRAR user23 password
+REGISTRAR user22 password
+REGISTRAR user12 password
+REGISTRAR user11 password
+REGISTRAR user10 password
+REGISTRAR user11 password
+REGISTRAR userm password
+REGISTRAR usern password
+REGISTRAR userb password
+REGISTRAR userv password
+REGISTRAR userc password
+REGISTRAR userx password
+REGISTRAR userz password
+REGISTRAR usera password
+REGISTRAR users password
+REGISTRAR userd password
+REGISTRAR used password
+REGISTRAR userf password
+REGISTRAR userg password
+REGISTRAR userh password
+REGISTRAR userj password
+PRINT
+REGISTRAR userl password
+PRINT
+REGISTRAR userk password
+REGISTRAR userp password
+REGISTRAR usero password
+REGISTRAR useri password
+REGISTRAR useru password
+REGISTRAR usery password
+REGISTRAR usert password
+REGISTRAR userr password
+REGISTRAR usere password
+REGISTRAR userw password
+REGISTRAR userq password
+REGISTRAR user0 password
+REGISTRAR user9 password
+REGISTRAR user8 password
+REGISTRAR user7 password
+REGISTRAR user6 password
+REGISTRAR user5 password
+REGISTRAR user4 password
+REGISTRAR user3 password
+INICIAR_SESION usera password
 FINALIZAR

@@ -6,7 +6,6 @@
 using namespace std;
 
 #define VACIA "_"
-#define LIBERADA "$"
 
 struct ranura{
     string name;
@@ -19,39 +18,17 @@ class login{
         int m;
         int registros;
         ranura *HT;
-        string *keys;
     public:
         login();
         ~login();
-        //bool iniciar_sesion(string usuario, string clave);
-        bool crear_nuevo_usuario(string usuario, string clave);
-        bool cambiar_clave(string usuario, string nueva_clave);
-        int h(string k);
+        bool iniciar_sesion(string usuario, string clave);      //revisa si existe el usuario en el diccionario
+        bool crear_nuevo_usuario(string usuario, string clave); //agrega un usuario a el diccionario
+        bool cambiar_clave(string usuario, string nueva_clave); //cambia la informacion del diccionario
+        int h(string k, int M);    //  funcion de hashing
 
         void init();
+        void RevisarFactorDeCarga();
 
         void eliminar();
 };
 
-
-/*
-class UnsortedDict{
-    private:
-        ranura HT;
-    public:
-
-    UnsortedDict();
-
-    ~UnsortedDict();
-
-    tipoInfo get(tipoClave k);//             Obtiene el valor i almacenado en el registro (k,i)
-
-    void insert(tipoClave k, tipoInfo i);//  Almacena un un registro (k, i) en el diccionario
-
-    tipoInfo remove(tipoClave k);//          Elimina el registro (k,i) almacenado en el diccionario
-
-    void clear();//                          Reinicializa el diccionario a uno vacío
-
-    int size();//                            Retorna el número de registros almacenados
-};
-*/
