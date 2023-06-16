@@ -5,19 +5,34 @@
 
 using namespace std;
 
-typedef string tipoClave; // tipo de clave de cada
-
-typedef string tipoInfo; // tipo de valor de cada
-
-int M=5;
-#define VACIA -1
-#define LIBERADA -2
-#define R 2
+#define VACIA "_"
+#define LIBERADA "$"
 
 struct ranura{
-    tipoClave key;
-    tipoInfo info;
+    string name;
+    string password;
 };
+
+
+class login{
+    private:
+        int m;
+        int registros;
+        ranura *HT;
+        string *keys;
+    public:
+        login();
+        ~login();
+        //bool iniciar_sesion(string usuario, string clave);
+        bool crear_nuevo_usuario(string usuario, string clave);
+        bool cambiar_clave(string usuario, string nueva_clave);
+        int h(string k);
+
+        void init();
+
+        void eliminar();
+};
+
 
 /*
 class UnsortedDict{
@@ -40,18 +55,3 @@ class UnsortedDict{
     int size();//                            Retorna el número de registros almacenados
 };
 */
-
-class login{
-    private:
-        int m;
-        int registros;
-        ranura *usuarios;
-        tipoClave *keys;
-    public:
-        login();
-        ~login();
-        bool iniciar_sesion(string usuario, string clave);
-        bool crear_nuevo_usuario(string usuario, string clave);
-        bool cambiar_clave(string usuario, string nueva_clave);
-        int h(tipoClave k);
-};
