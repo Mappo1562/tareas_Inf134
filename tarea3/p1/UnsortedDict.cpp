@@ -126,16 +126,13 @@ void login::eliminar(){
     cout << "total de registros= " << registros << "\n";
 }
 
-bool login::iniciar_sesion(string nombre, string contrasenia)
-{
+bool login::iniciar_sesion(string nombre, string contrasenia){
     int inicio, i;
     int pos = inicio = h(nombre,m);
-    for (i = 1; HT[pos].name != VACIA && HT[pos].name != nombre; i++)
-    {
+    for (i = 1; HT[pos].name != VACIA && HT[pos].name != nombre; i++){
         pos = (inicio + p(nombre, i)) % m;
     }
-    if (HT[pos].name == VACIA)
-    {
+    if (HT[pos].name == VACIA){
         cout << "El usuario no se encuentra registrado\n";
         return 0;
     }
