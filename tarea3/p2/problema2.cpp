@@ -33,7 +33,7 @@ void PUSHCOMMAND(comando c, tcola &heap){
 *****/
 
 void GET(tcola &heap, int n){
-    if (heap.sizeColaP()<n){
+    if (heap.sizeColaP()==0){
         cout<<"0\n";
         return;
     }
@@ -41,10 +41,15 @@ void GET(tcola &heap, int n){
     comando c;
     cout<<n;
     for (int i=0;i<n;i++){
-        c=heap.findMin();
-        cout<<" "<<c.id;
-        ins[i]=c.instruccion;
-        heap.removeMin();
+        if (heap.sizeColaP()==0){
+            ins[i]=" ";
+        }
+        else{
+            c=heap.findMin();
+            cout<<" "<<c.id;
+            ins[i]=c.instruccion;
+            heap.removeMin();
+        }
     }
     for(int i=0;i<n;i++)
         cout<<"\n"<<ins[i];
