@@ -36,10 +36,10 @@ class tcola{
 
         // inserta un elemento “item” en la cola de prioridad
         void insertColaP(comando item);
-    
-        void print();
 
+        //retorna agregados
         int pushes();
 
+        //retorna eliminados
         int deletes();
 };

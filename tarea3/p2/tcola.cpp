@@ -66,13 +66,6 @@ void tcola::removeMin(){
     }
 }
 
-void tcola::print(){
-    cout<<"hay "<<Ht[0].prioridad<<" valores ingresados\n";
-    for (int i=1;i<Ht[0].prioridad+1;i++)
-        cout<<" [ "<<Ht[i].prioridad<<" ] ";
-    cout<<"\n";
-}
-
 int tcola::deletes(){
     return eliminados;
 }
