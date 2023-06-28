@@ -87,30 +87,8 @@ void printValorNoVacio(ranura HT[]) {
 }
 
 int main() {
-    VALORINVALIDO.clave_privada = " ";
-    init(HT);
-    tipoClave k = "embajador";
-    tipoInfo i;
-    i.clave_privada = "B0mb4 Nu21345";
-    hashInsert(HT, k, i);
-    k = "asdlijasd";
-    i;
-    i.clave_privada = "discretasXD";
-    hashInsert(HT, k, i);
-    k = "Grande el prestigio";
-    i;
-    i.clave_privada = "prestigioposting";
-    hashInsert(HT, k, i);
-    k = "jadoremba";
-    i;
-    i.clave_privada = "Viva la paz";
-    hashInsert(HT, k, i);
-
-    cout << hashSearch(HT, "embajador").clave_privada << "\n";
-    cout << hashSearch(HT, "asdlijasd").clave_privada << "\n";
-    cout << hashSearch(HT, "Grande el prestigio").clave_privada << "\n";
-    
-    cout << "Diccionario\n";
-    printValorNoVacio(HT);
+    string s;
+    getline(cin,s);
+    cout<<s<<"\n";
     return 0;
 }
