@@ -1,5 +1,18 @@
 #include "tcola.hpp"
 
+/*****
+* tcola::tcola
+******
+* constructor tcola
+******
+* Input:
+*   void
+******
+* Returns:
+*   void
+*****/
+
+
 tcola::tcola(){
     Ht[0].prioridad=0;
     for (int i=1;i<M;i++){
@@ -9,7 +22,32 @@ tcola::tcola(){
     eliminados=0;
 }
 
+/*****
+* tcola::tcola
+******
+* destructor tcola
+******
+* Input:
+*   void
+******
+* Returns:
+*   void
+*****/
+
 tcola::~tcola(){}
+
+/*****
+* void tcola::insertColaP
+******
+* Metodo que inserta un item en el heap
+******
+* Input:
+*   comando item : item a ingresar
+******
+* Returns:
+*   void
+*****/
+
 
 void tcola::insertColaP(comando item){
     Ht[0].prioridad++;
@@ -28,13 +66,52 @@ void tcola::insertColaP(comando item){
     }
 }
 
+/*****
+* int tcola::sizeColaP
+******
+* Metodo que retorna la cantidad de valores en el heap
+******
+* Input:
+*   void
+******
+* Returns:
+*   Ht[0].prioridad : int que representa el total de valores en el heap
+*****/
+
+
 int tcola::sizeColaP(){
     return Ht[0].prioridad;
 }
 
+/*****
+* tipoElem tcola::findMin
+******
+* Metodo que retorna el comando con numero de prioridad menor
+******
+* Input:
+*   void
+******
+* Returns:
+*   Ht[1] : comando con numero de prioridad menor
+*****/
+
+
 tipoElem tcola::findMin(){
     return Ht[1];
 }
+
+/*****
+* void tcola::removeMin
+******
+* Metodo que elimina el min valor de prioridad y reacomoda el heap
+******
+* Input:
+*   void
+******
+* Returns:
+*   void
+*****/
+
 
 void tcola::removeMin(){
     if (Ht[0].prioridad<1)
@@ -66,9 +143,34 @@ void tcola::removeMin(){
     }
 }
 
+/*****
+* int tcola::deletes
+******
+* Metodo que retorna la cantidad de valores eliminados (enviados)
+******
+* Input:
+* void
+******
+* Returns:
+*   eliminados : entero que representa la cantidad de los valores enviados (eliminados)
+*****/
+
+
 int tcola::deletes(){
     return eliminados;
 }
+
+/*****
+* int tcola::pushes
+******
+* Metodo que retorna la cantidad de valores ingresados
+******
+* Input:
+* void
+******
+* Returns:
+*   agregados : entero que representa la cantidad de los valores agregados
+*****/
 
 int tcola::pushes(){
     return agregados;

@@ -1,13 +1,21 @@
 #include "login.hpp"
 
-//cd /mnt/d/user/admin/documents/github/tareas_inf134/tarea3/p1
-//g++ UnsortedDict.cpp main.cpp -o out -Wall
 
+/*****
+* void procedure
+******
+* lee la entrada y llama a las funciones acorde a eso
+******
+* Input:
+*   void
+******
+* Returns:
+*   void
+*****/
 
 void procedure(){
     string nombre,clave,instruccion;
     login dic;
-    dic.init();
 
     do{
         cin>>instruccion;
@@ -27,12 +35,21 @@ void procedure(){
             cin>>clave;
             dic.cambiar_clave(nombre,clave);
         }
-        else if (instruccion=="PRINT"){
-            dic.eliminar();
-        }
     }while(instruccion!="FINALIZAR");
 
 }
+
+/*****
+* int main
+******
+* llama a la funcion procedure
+******
+* Input:
+*   void
+******
+* Returns:
+*  int 0
+*****/
 
 int main(){
     procedure();

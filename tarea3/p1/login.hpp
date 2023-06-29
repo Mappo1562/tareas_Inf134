@@ -25,10 +25,6 @@ class login{
         bool crear_nuevo_usuario(string usuario, string clave); //agrega un usuario a el diccionario
         bool cambiar_clave(string usuario, string nueva_clave); //cambia la informacion del diccionario
         int h(string k, int M);    //  funcion de hashing
-
-        void init();
         void RevisarFactorDeCarga();
-
-        void eliminar();
 };
 
