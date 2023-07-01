@@ -14,6 +14,7 @@
 
 
 tcola::tcola(){
+    Ht=new comando[M];
     Ht[0].prioridad=0;
     for (int i=1;i<M;i++){
         Ht[i].prioridad=inf;
@@ -23,7 +24,7 @@ tcola::tcola(){
 }
 
 /*****
-* tcola::tcola
+* tcola::~tcola
 ******
 * destructor tcola
 ******
@@ -35,6 +36,22 @@ tcola::tcola(){
 *****/
 
 tcola::~tcola(){}
+
+/*****
+* void tcola::clear
+******
+* libera la memoria
+******
+* Input:
+*   void
+******
+* Returns:
+*   void
+*****/
+
+void tcola::clear(){
+    delete[] Ht;
+}
 
 /*****
 * void tcola::insertColaP

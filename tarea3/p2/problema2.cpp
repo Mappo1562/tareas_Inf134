@@ -51,9 +51,12 @@ void GET(tcola &heap, int n){
             heap.removeMin();
         }
     }
-    for(int i=0;i<n;i++)
-        cout<<"\n"<<ins[i];
     cout<<"\n";
+    for(int i=0;i<n;i++){
+        for(unsigned int j=1;j<ins[i].length();j++)
+            cout<<ins[i][j];
+        cout<<"\n";
+    }
 }
 
 /*****
@@ -105,6 +108,7 @@ void procedure(){
             TERMINATE(heap);
         }
     }while(instruccion!="TERMINATE");
+    heap.clear();
 }
 
 /*****

@@ -151,7 +151,7 @@ bool login::crear_nuevo_usuario(string nombre, string contrasenia){
     if (contrasenia.size() > 7){
         HT[pos].name = nombre;
         HT[pos].password = contrasenia;
-        cout << "Usuario "<<nombre<<" registrado con exito  \n";
+        cout << "Usuario registrado con exito  \n";
         registros++;
         RevisarFactorDeCarga();
         return 1;

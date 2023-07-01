@@ -18,7 +18,7 @@ typedef comando tipoElem;
 
 class tcola{
     private:
-        comando Ht[M];
+        comando *Ht;
         int agregados;
         int eliminados;
     public:    
@@ -42,4 +42,6 @@ class tcola{
 
         //retorna eliminados
         int deletes();
+
+        void clear();
 };
