@@ -1,6 +1,6 @@
 para compilar estos programas se utilizo:
 
-1.      g++ problema_1.cpp login.cpp -o out -Wall       para el problema 1 en la carpeta p1
+1.      g++ problema1.cpp login.cpp -o out -Wall       para el problema 1 en la carpeta p1
 2.      g++ problema2.cpp tcola.cpp -o out -Wall        para el problema 2 en la carpeta p2
 
 para correr el programa se utiliza ./out en los 2 casos
