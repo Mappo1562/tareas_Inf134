@@ -35,7 +35,9 @@ tcola::tcola(){
 *   void
 *****/
 
-tcola::~tcola(){}
+tcola::~tcola(){
+    delete[] Ht;
+}
 
 /*****
 * void tcola::clear
@@ -61,7 +63,7 @@ void tcola::clear(){
 * Input:
 *   comando item : item a ingresar
 ******
-* Returns:
+* Returns:w
 *   void
 *****/
 

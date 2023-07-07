@@ -71,7 +71,7 @@ void GET(tcola &heap, int n){
 *   solo imprime los enviados y los creados
 *****/
 
-void TERMINATE(tcola heap){
+void TERMINATE(tcola &heap){
     cout<<heap.deletes()<<" SENT "<<heap.pushes()<<" CREATED\n";
 }
 
@@ -108,7 +108,6 @@ void procedure(){
             TERMINATE(heap);
         }
     }while(instruccion!="TERMINATE");
-    heap.clear();
 }
 
 /*****
